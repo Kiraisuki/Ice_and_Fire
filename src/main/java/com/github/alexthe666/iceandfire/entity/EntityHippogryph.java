@@ -696,6 +696,7 @@ public class EntityHippogryph extends EntityTameable implements ISyncMount, IAni
             return;
         }
         if (this.isBeingRidden() && this.canBeSteered()) {
+        	//IceAndFire.logger.info("Hippogryph " + this.getCustomNameTag() + " pos: " + this.posX + ", " + this.posY + ", " + this.posZ);
             EntityLivingBase controller = (EntityLivingBase) this.getControllingPassenger();
             if (controller != null) {
                 strafe = controller.moveStrafing * 0.5F;

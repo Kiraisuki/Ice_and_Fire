@@ -1,5 +1,7 @@
 package com.github.alexthe666.iceandfire.message;
 
+import com.github.alexthe666.iceandfire.IceAndFire;
+
 import io.netty.buffer.ByteBuf;
 import net.ilexiconn.llibrary.server.network.AbstractMessage;
 import net.minecraft.client.Minecraft;
@@ -48,7 +50,7 @@ public class MessageSyncMountPosition extends AbstractMessage<MessageSyncMountPo
     @Override
     @SideOnly(Side.CLIENT)
     public void onClientReceived(Minecraft client, MessageSyncMountPosition message, EntityPlayer player, MessageContext messageContext) {
-        if (player.world != null) {
+    	if (player.world != null) {
             Entity entity = player.world.getEntityByID(message.dragonId);
             if (entity != null) {
                 entity.setPosition(message.posX, message.posY, message.posZ);
@@ -57,11 +59,12 @@ public class MessageSyncMountPosition extends AbstractMessage<MessageSyncMountPo
     }
 
     @Override
+    @SideOnly(Side.SERVER)
     public void onServerReceived(MinecraftServer server, MessageSyncMountPosition message, EntityPlayer player, MessageContext messageContext) {
         if (player.world != null) {
             Entity entity = player.world.getEntityByID(message.dragonId);
             if (entity != null) {
-                entity.setPosition(message.posX, message.posY, message.posZ);
+                entity.setPosition(entity.posX, entity.posY, entity.posZ);
             }
         }
     }
