@@ -250,7 +250,7 @@ public class EntityHippogryph extends EntityTameable implements ISyncMount, IAni
                 }
                 return true;
             }
-            if (itemstack != null && itemstack.getItem() == Items.STICK) {
+            if (itemstack != null && (itemstack.getItem() == Items.STICK || itemstack.getItem() == ModItems.dragon_stick)) {
                 if (player.isSneaking()) {
                     if (this.hasHomePosition) {
                         this.hasHomePosition = false;
